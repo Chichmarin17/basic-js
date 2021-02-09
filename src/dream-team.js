@@ -8,5 +8,5 @@ module.exports = function createDreamTeam(members) {
     dreamTeam.push(members[i].trim().toUpperCase()[0]);
   }
   dreamTeam = dreamTeam.sort();
-  return members;
+  return dreamTeam.join("");
 };
