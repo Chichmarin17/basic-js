@@ -5,7 +5,7 @@ module.exports = function transform(arr) {
   let checker = 0;
   for (i = 0; i < arr.length; i++) {
     if (arr[i] == '--discard-next') {
-      if (!Number.isInteger(arr[i + 1])) {
+      if (Number.isInteger(arr[i + 1])) {
           checker += 1;
       } else continue;
     } else if (arr[i] == '--discard-prev') {
@@ -20,6 +20,9 @@ module.exports = function transform(arr) {
       if (newArr.length > 0) {
         newArr.push(newArr[newArr.length - 1]);
       } else continue;
-    } else if (counter > 0)
+    } else if (checker > 0) {
+        checker = 0;
+    } else newArr.push(arr[i]);
   }
+  return newArr;
 };
