@@ -1,21 +1,26 @@
 const CustomError = require("../extensions/custom-error");
+let chain;
 
 const chainMaker = {
-  let chain = [];
+  chain: [],
   getLength() {
     return chain.length;
   },
   addLink(value) {
-    return chain.push(`( ${value} )`);
+    this.chain.push(`( ${value} )`);
+    return this;
   },
   removeLink(position) {
     chain.splice(position - 1, 1);
+    return this;
   },
   reverseChain() {
-    return chain = chain.reverse();
+    chain = this.chain.reverse();
+    return this;
   },
   finishChain() {
-    return chain.join("~~");
+    return this.chain.join("~~");
+  }
 };
 
 module.exports = chainMaker;
