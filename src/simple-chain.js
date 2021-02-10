@@ -1,8 +1,8 @@
 const CustomError = require("../extensions/custom-error");
-let chain;
+let chain = [];
 
 const chainMaker = {
-  chain: [],
+  chain: chain,
   getLength() {
     return chain.length;
   },
@@ -19,8 +19,8 @@ const chainMaker = {
     return this;
   },
   finishChain() {
-    return this.chain.join("~~");
+    this.chain = this.chain.join("~~");
+    return this;
   }
 };
-
 module.exports = chainMaker;
