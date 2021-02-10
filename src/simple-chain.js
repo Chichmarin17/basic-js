@@ -11,16 +11,18 @@ const chainMaker = {
     return this;
   },
   removeLink(position) {
-    chain.splice(position - 1, 1);
+    if (typeof(this.chain[position - 1]) == 'undefined') {
+      throw "Error";
+    }
+    this.chain.splice(position - 1, 1);
     return this;
   },
   reverseChain() {
-    chain = this.chain.reverse();
+    this.chain = this.chain.reverse();
     return this;
   },
   finishChain() {
-    this.chain = this.chain.join("~~");
-    return this;
+    return this.chain.join("~~");
   }
 };
 module.exports = chainMaker;
