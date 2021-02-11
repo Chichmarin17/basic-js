@@ -20,6 +20,7 @@ module.exports = function repeater(str, options) {
 
   
   for (i = 0; i < options.repeatTimes; i++) {
+    if (typeof(str) == 'null' || str.length < 1) str = 'null';
     strArr.push(str.toString());
   }
   let addArr = [];
