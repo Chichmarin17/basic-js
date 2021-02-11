@@ -2,9 +2,6 @@ const CustomError = require("../extensions/custom-error");
 
 module.exports = function repeater(str, options) {
   let strArr = [];
-  // return str;
-  // return Object.entries(options).join("!!!");
-  // return options.hasOwnProperty('repeatTimes');
   if (!options.hasOwnProperty('separator')) {
     options.separator = '+';
   }
@@ -20,11 +17,12 @@ module.exports = function repeater(str, options) {
 
   
   for (i = 0; i < options.repeatTimes; i++) {
-    if (typeof(str) == 'null' || str.length < 1) str = 'null';
+    if (str == null) str = 'null';
     strArr.push(str.toString());
   }
   let addArr = [];
   for (j = 0; j < options.additionRepeatTimes; j++) {
+    if (options.addition === null) options.addition = 'null';
     if (options.addition != undefined){
       addArr.push(options.addition.toString());
     }
