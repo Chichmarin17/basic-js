@@ -12,6 +12,7 @@ const chainMaker = {
   },
   removeLink(position) {
     if (typeof(this.chain[position - 1]) == 'undefined') {
+      this.chain = [];
       throw "Error";
     }
     this.chain.splice(position - 1, 1);
@@ -22,7 +23,9 @@ const chainMaker = {
     return this;
   },
   finishChain() {
-    return this.chain.join("~~");
+    let final = this.chain.join("~~");
+    this.chain = [];
+    return final;
   }
 };
 module.exports = chainMaker;
