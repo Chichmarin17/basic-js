@@ -19,9 +19,14 @@ class VigenereCipheringMachine {
       }
     }
     message = message.split("");
-    let result = message.map(function (item, index, keyLengthOfMessage) {
-      return (item.charCodeAt() + keyLengthOfMessage[index].charCodeAt()) % 65 + 65;
-    })
+    let result = [];
+    for (j = 0; j < message.length; j++) {
+      if (message[j].charCodeAt() < charCodes[0] || message[j].charCodeAt() > charCodes[1]) {
+        result.push(message[j]);
+      } else {
+        result.push(String.fromCharCode( (message[j].charCodeAt() + keyLengthOfMessage[j].charCodeAt()) % 26 + 65))
+      }
+    }
     
   }    
   decrypt() {
