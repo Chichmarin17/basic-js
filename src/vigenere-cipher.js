@@ -2,9 +2,11 @@ const CustomError = require("../extensions/custom-error");
 
 class VigenereCipheringMachine {
   encrypt(message, key) {
+    message = message.toUpperCase();
+    key = key.toUpperCase();
     let keyLengthOfMessage = [];
     let countInKey = 0;
-    const charCodes = [65, 122];
+    const charCodes = [65, 90];
     for (i = 0; i < message.length; i++) {
       if (key[countInKey] == undefined) {
         countInKey = 0;
@@ -16,7 +18,11 @@ class VigenereCipheringMachine {
         countInKey++;
       }
     }
-    return keyLengthOfMessage;
+    message = message.split("");
+    let result = message.map(function (item, index, keyLengthOfMessage) {
+      return (item.charCodeAt() + keyLengthOfMessage[index].charCodeAt()) % 65 + 65;
+    })
+    
   }    
   decrypt() {
     
